@@ -15,14 +15,24 @@
     </thead>
     <tbody>
       <tr
+        v-for="i in assets"
+        :key="i.id"
         class="border-b border-gray-200 hover:bg-gray-100 hover:bg-orange-100"
       >
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
+        <td>
+          <img
+            v-bind:src="`https://static.coincap.io/assets/icons/${i.symbol.toLowerCase()}@2x.png`"
+            v-bind:alt="i.name"
+          />
+        </td>
+        <td>
+          <b># {{ i.rank }}</b>
+        </td>
+        <td>{{ i.name }}</td>
+        <td>{{ i.priceUsd }}</td>
+        <td>{{ i.marketCapUsd }}</td>
+        <td>{{ i.changePercent24Hr }}</td>
+
         <td class="hidden sm:block"></td>
       </tr>
     </tbody>
@@ -34,6 +44,7 @@ export default {
   name: "PxAssetsTable",
 
   props: {
+    //este assets es el que se crea en home.vue
     assets: {
       type: Array,
       default: () => [],

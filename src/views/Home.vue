@@ -1,6 +1,6 @@
 <template>
   <div>
-    <px-assets-table> </px-assets-table>
+    <px-assets-table v-bind:assets="assets"> </px-assets-table>
   </div>
 </template>
 
@@ -18,6 +18,7 @@ export default {
 
   created() {
     api.getAssets().then((assets) => (this.assets = assets));
+    console.log(this.assets);
   },
 };
 </script>
