@@ -21,6 +21,7 @@
       >
         <td>
           <img
+            class="w-6 h-6"
             v-bind:src="`https://static.coincap.io/assets/icons/${i.symbol.toLowerCase()}@2x.png`"
             v-bind:alt="i.name"
           />
@@ -29,9 +30,15 @@
           <b># {{ i.rank }}</b>
         </td>
         <td>{{ i.name }}</td>
-        <td>{{ i.priceUsd }}</td>
-        <td>{{ i.marketCapUsd }}</td>
-        <td>{{ i.changePercent24Hr }}</td>
+        <td>{{ i.priceUsd | dollar }}</td>
+        <td>{{ i.marketCapUsd | dollar }}</td>
+        <td
+          v-bind:class="
+            i.changePercent24Hr < 0 ? 'text-red-600' : 'text-green-600'
+          "
+        >
+          {{ i.changePercent24Hr | percent }}
+        </td>
 
         <td class="hidden sm:block"></td>
       </tr>
