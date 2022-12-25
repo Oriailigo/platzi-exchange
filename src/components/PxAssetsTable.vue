@@ -29,7 +29,14 @@
         <td>
           <b># {{ i.rank }}</b>
         </td>
-        <td>{{ i.name }}</td>
+        <td>
+          <router-link
+            class="hover:underline text-green-600"
+            :to="{ name: 'coin-detail', params: { id: i.id } }"
+          >
+            {{ i.name }}</router-link
+          >
+        </td>
         <td>{{ i.priceUsd | dollar }}</td>
         <td>{{ i.marketCapUsd | dollar }}</td>
         <td
