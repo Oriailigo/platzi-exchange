@@ -46,16 +46,33 @@
         >
           {{ i.changePercent24Hr | percent }}
         </td>
+        <!-- uso al componente boton -->
 
-        <td class="hidden sm:block"></td>
+        <td class="hidden sm:block">
+          <router-link
+            class="hover:underline text-green-600"
+            :to="{ name: 'coin-detail', params: { id: i.id } }"
+          >
+            <div>
+              <px-button>
+                <span>Detalle</span>
+              </px-button>
+            </div>
+          </router-link>
+        </td>
       </tr>
     </tbody>
   </table>
 </template>
 
 <script>
+//importo al componente button
+import PxButton from "@/components/PxButton.vue";
+
 export default {
   name: "PxAssetsTable",
+  // llamo al componente button
+  components: { PxButton },
 
   props: {
     //este assets es el que se crea en home.vue

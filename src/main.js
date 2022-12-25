@@ -3,7 +3,6 @@ import App from "./App.vue";
 import "@/assets/css/tailwind.css";
 
 //rutas
-
 import router from "@/components/router";
 // importar formato de la libreria normal
 import { dollarFilter, percentFilter } from "@/filter";
