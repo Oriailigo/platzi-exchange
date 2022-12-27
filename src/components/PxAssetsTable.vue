@@ -10,7 +10,15 @@
         <th>Precio</th>
         <th>Cap. de Mercado</th>
         <th>Variación 24hs</th>
-        <td class="hidden sm:block"></td>
+        <td class="hidden sm:block">
+          <input
+            class="bg-gray-100 focus:outline-none border-b border-gray-400 py-2 px-4 block w-full appearance-none leading-normal"
+            id="filter"
+            placeholder="Buscar..."
+            type="text"
+            v-model="coin"
+          />
+        </td>
       </tr>
     </thead>
     <tbody>
@@ -73,7 +81,11 @@ export default {
   name: "PxAssetsTable",
   // llamo al componente button
   components: { PxButton },
-
+  data() {
+    return {
+      coin: "",
+    };
+  },
   props: {
     //este assets es el que se crea en home.vue
     assets: {
@@ -81,6 +93,23 @@ export default {
       default: () => [],
     },
   },
+  computed: {
+    filterAssets() {
+      return this.assets.filter((a) => a.name.includes(this.coin));
+    },
+  },
+
+  // computed: {
+  //   filteredAssets() {
+  //     if (!this.filter) {
+  //       return this.assets;
+  //     }
+  //     return this.assets.filter((a) => {
+  //       a.symbol.toLowerCase().includes(this.filter.toLowerCase()) ||
+  //         a.name.toLowerCase().includes(this.filter.toLowerCase());
+  //     });
+  //   },
+  // },
 };
 </script>
 
