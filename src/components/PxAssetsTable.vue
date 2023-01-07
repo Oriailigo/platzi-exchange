@@ -11,13 +11,7 @@
         <th>Cap. de Mercado</th>
         <th>Variación 24hs</th>
         <td class="hidden sm:block">
-          <input
-            class="bg-gray-100 focus:outline-none border-b border-gray-400 py-2 px-4 block w-full appearance-none leading-normal"
-            id="filter"
-            placeholder="Buscar..."
-            type="text"
-            v-model="coin"
-          />
+          <input type="text" placeholder="Buscar..." v-model="filter" />
         </td>
       </tr>
     </thead>
@@ -83,7 +77,7 @@ export default {
   components: { PxButton },
   data() {
     return {
-      coin: "",
+      filter: "",
     };
   },
   props: {
@@ -93,12 +87,26 @@ export default {
       default: () => [],
     },
   },
+  // computed: {
+  //   filterAssets() {
+  //     return this.assets.filter((a) => a.name.includes(this.filter));
+  //   },
+  // },
+
   computed: {
-    filterAssets() {
-      return this.assets.filter((a) => a.name.includes(this.coin));
+    filteredAssets() {
+      if (this.assets == null) {
+        console.log("es nulo");
+      } else {
+        console.log("esta bien");
+      }
+      return this.assets.filter(
+        (a) =>
+          a.symbol.toLowerCase().includes(this.filter.toLowerCase()) ||
+          a.name.toLowerCase().includes(this.filter.toLowerCase())
+      );
     },
   },
-
   // computed: {
   //   filteredAssets() {
   //     if (!this.filter) {
